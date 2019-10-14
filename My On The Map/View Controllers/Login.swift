@@ -1,0 +1,71 @@
+//
+//  Login.swift
+//  On The Map
+//
+//  Created by Brittany Mason on 10/2/19.
+//  Copyright © 2019 Udacity. All rights reserved.
+//
+
+import Foundation
+import UIKit
+
+class login: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate {
+    
+    // MARK: Setting Outlets
+    @IBOutlet weak var userNameTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var facebookButton: UIButton!
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        //        subscribeToKeyboardNotifications()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        //        unsubscribeFromKeyboardNotifications()
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        /* Textfield Delegates */
+        userNameTextField.delegate = self
+        passwordTextField.delegate = self
+        
+    }
+    
+    @IBAction func loginButtonTapped(_ sender: Any) {
+        print("tapped")
+        
+           taskPostASessionAuth(username: userNameTextField.text!, password: passwordTextField.text!) { (success, errorString) in performUIUpdatesOnMain {
+                    if success{
+                        performUIUpdatesOnMain {
+                            
+                            print("Successfully logged in!")
+                        }
+                    }
+                    }
+                }
+            
+            
+            func enableControllers(_ enable: Bool) {
+                self.userNameTextField? .isEnabled = false
+                self.passwordTextField.isEnabled = false
+                self.loginButton.isEnabled = false
+                self.facebookButton.isEnabled = false
+            
+        }
+        
+    }
+    }
+    
+    
+    
+
+    
+    
+
+
+
